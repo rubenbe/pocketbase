@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/pocketbase/pocketbase/core"
-	"github.com/pocketbase/pocketbase/plugins/jsvm"
-	"github.com/pocketbase/pocketbase/tools/list"
+	"github.com/rubenbe/pocketbase/core"
+	"github.com/rubenbe/pocketbase/plugins/jsvm"
+	"github.com/rubenbe/pocketbase/tools/list"
 	"github.com/pocketbase/tygoja"
 )
 
@@ -1146,14 +1146,14 @@ func main() {
 		Packages: map[string][]string{
 			"github.com/go-ozzo/ozzo-validation/v4":             {"Error"},
 			"github.com/pocketbase/dbx":                         {"*"},
-			"github.com/pocketbase/pocketbase/tools/security":   {"*"},
-			"github.com/pocketbase/pocketbase/tools/filesystem": {"*"},
-			"github.com/pocketbase/pocketbase/tools/template":   {"*"},
-			"github.com/pocketbase/pocketbase/mails":            {"*"},
-			"github.com/pocketbase/pocketbase/apis":             {"*"},
-			"github.com/pocketbase/pocketbase/core":             {"*"},
-			"github.com/pocketbase/pocketbase/forms":            {"*"},
-			"github.com/pocketbase/pocketbase":                  {"*"},
+			"github.com/rubenbe/pocketbase/tools/security":   {"*"},
+			"github.com/rubenbe/pocketbase/tools/filesystem": {"*"},
+			"github.com/rubenbe/pocketbase/tools/template":   {"*"},
+			"github.com/rubenbe/pocketbase/mails":            {"*"},
+			"github.com/rubenbe/pocketbase/apis":             {"*"},
+			"github.com/rubenbe/pocketbase/core":             {"*"},
+			"github.com/rubenbe/pocketbase/forms":            {"*"},
+			"github.com/rubenbe/pocketbase":                  {"*"},
 			"path/filepath":                                     {"*"},
 			"os":                                                {"*"},
 			"os/exec":                                           {"Command"},
