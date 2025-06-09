@@ -6,10 +6,10 @@ import (
 	"testing"
 
 	"github.com/pocketbase/dbx"
-	"github.com/pocketbase/pocketbase/core"
-	"github.com/pocketbase/pocketbase/tests"
-	"github.com/pocketbase/pocketbase/tools/list"
-	"github.com/pocketbase/pocketbase/tools/types"
+	"github.com/rubenbe/pocketbase/core"
+	"github.com/rubenbe/pocketbase/tests"
+	"github.com/rubenbe/pocketbase/tools/list"
+	"github.com/rubenbe/pocketbase/tools/types"
 )
 
 func TestSyncRecordTableSchema(t *testing.T) {
