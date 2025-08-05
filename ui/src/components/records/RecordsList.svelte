@@ -14,7 +14,7 @@
 
     const dispatch = createEventDispatcher();
     const sortRegex = /^([\+\-])?(\w+)$/;
-    const perPage = 40;
+    const perPage = 200;
 
     export let collection;
     export let sort = "";
