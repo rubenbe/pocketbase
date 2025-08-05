@@ -184,7 +184,7 @@
     <CollectionsSidebar />
     {/if}
 
-    <PageWrapper class="flex-content">
+    <PageWrapper class="flex-content page--collection--{$activeCollection.name}">
         <header class="page-header">
             <nav class="breadcrumbs">
                 <div class="breadcrumb-item">
