@@ -77,6 +77,7 @@ func Serve(app core.App, config ServeConfig) error {
 		AllowMethods: []string{http.MethodGet, http.MethodHead, http.MethodPut, http.MethodPatch, http.MethodPost, http.MethodDelete},
 	}))
 
+	```
 	pbRouter.GET("/_/{path...}", Static(ui.DistDirFS, false)).
 		BindFunc(func(e *core.RequestEvent) error {
 			// ignore root path
@@ -92,6 +93,7 @@ func Serve(app core.App, config ServeConfig) error {
 			return e.Next()
 		}).
 		Bind(Gzip())
+	```
 
 	// start http server
 	// ---
