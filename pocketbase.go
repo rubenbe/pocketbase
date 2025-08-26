@@ -48,10 +48,11 @@ type Config struct {
 	HideStartBanner bool
 
 	// optional default values for the console flags
-	DefaultDev           bool
-	DefaultDataDir       string // if not set, it will fallback to "./pb_data"
-	DefaultEncryptionEnv string
-	DefaultQueryTimeout  time.Duration // default to core.DefaultQueryTimeout (in seconds)
+	DefaultDev            bool
+	DefaultAllowSuperUser bool
+	DefaultDataDir        string // if not set, it will fallback to "./pb_data"
+	DefaultEncryptionEnv  string
+	DefaultQueryTimeout   time.Duration // default to core.DefaultQueryTimeout (in seconds)
 
 	// optional DB configurations
 	DataMaxOpenConns int                // default to core.DefaultDataMaxOpenConns
@@ -69,11 +70,16 @@ type Config struct {
 // Everything will be initialized when [PocketBase.Start] is executed.
 // If you want to initialize the application before calling [PocketBase.Start],
 // then you'll have to manually call [PocketBase.Bootstrap].
-func New() *PocketBase {
+func New(defaultAllowSuperUser ...bool) *PocketBase {
+	localAllowSuperUser := true
+	if len(defaultAllowSuperUser) > 0 {
+		localAllowSuperUser = defaultAllowSuperUser[0]
+	}
 	_, isUsingGoRun := inspectRuntime()
 
 	return NewWithConfig(Config{
-		DefaultDev: isUsingGoRun,
+		DefaultDev:            isUsingGoRun,
+		DefaultAllowSuperUser: localAllowSuperUser,
 	})
 }
 
@@ -134,6 +140,7 @@ func NewWithConfig(config Config) *PocketBase {
 		AuxMaxOpenConns:  config.AuxMaxOpenConns,
 		AuxMaxIdleConns:  config.AuxMaxIdleConns,
 		DBConnect:        config.DBConnect,
+		AllowSuperUser:   config.DefaultAllowSuperUser,
 	})
 
 	// hide the default help command (allow only `--help` flag)

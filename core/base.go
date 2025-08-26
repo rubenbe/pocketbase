@@ -63,6 +63,7 @@ type BaseAppConfig struct {
 	AuxMaxOpenConns  int
 	AuxMaxIdleConns  int
 	IsDev            bool
+	AllowSuperUser   bool
 }
 
 // ensures that the BaseApp implements the App interface.
@@ -1375,7 +1376,7 @@ func (app *BaseApp) registerBaseHooks() {
 	app.registerAutobackupHooks()
 	app.registerCollectionHooks()
 	app.registerRecordHooks()
-	app.registerSuperuserHooks()
+	app.registerSuperuserHooks(app.config.AllowSuperUser)
 	app.registerExternalAuthHooks()
 	app.registerMFAHooks()
 	app.registerOTPHooks()
