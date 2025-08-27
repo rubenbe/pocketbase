@@ -37,6 +37,7 @@ type PocketBase struct {
 	encryptionEnvFlag string
 	queryTimeout      int
 	hideStartBanner   bool
+	AllowSuperUser    bool
 
 	// RootCmd is the main console command
 	RootCmd *cobra.Command
@@ -48,11 +49,10 @@ type Config struct {
 	HideStartBanner bool
 
 	// optional default values for the console flags
-	DefaultDev            bool
-	DefaultAllowSuperUser bool
-	DefaultDataDir        string // if not set, it will fallback to "./pb_data"
-	DefaultEncryptionEnv  string
-	DefaultQueryTimeout   time.Duration // default to core.DefaultQueryTimeout (in seconds)
+	DefaultDev           bool
+	DefaultDataDir       string // if not set, it will fallback to "./pb_data"
+	DefaultEncryptionEnv string
+	DefaultQueryTimeout  time.Duration // default to core.DefaultQueryTimeout (in seconds)
 
 	// optional DB configurations
 	DataMaxOpenConns int                // default to core.DefaultDataMaxOpenConns
@@ -70,16 +70,11 @@ type Config struct {
 // Everything will be initialized when [PocketBase.Start] is executed.
 // If you want to initialize the application before calling [PocketBase.Start],
 // then you'll have to manually call [PocketBase.Bootstrap].
-func New(defaultAllowSuperUser ...bool) *PocketBase {
-	localAllowSuperUser := true
-	if len(defaultAllowSuperUser) > 0 {
-		localAllowSuperUser = defaultAllowSuperUser[0]
-	}
+func New() *PocketBase {
 	_, isUsingGoRun := inspectRuntime()
 
 	return NewWithConfig(Config{
-		DefaultDev:            isUsingGoRun,
-		DefaultAllowSuperUser: localAllowSuperUser,
+		DefaultDev: isUsingGoRun,
 	})
 }
 
@@ -140,7 +135,7 @@ func NewWithConfig(config Config) *PocketBase {
 		AuxMaxOpenConns:  config.AuxMaxOpenConns,
 		AuxMaxIdleConns:  config.AuxMaxIdleConns,
 		DBConnect:        config.DBConnect,
-		AllowSuperUser:   config.DefaultAllowSuperUser,
+		AllowSuperUser:   pb.AllowSuperUser,
 	})
 
 	// hide the default help command (allow only `--help` flag)
@@ -165,6 +160,10 @@ func NewWithConfig(config Config) *PocketBase {
 	})
 
 	return pb
+}
+
+func (pb *PocketBase) IsDeveloperMode() bool {
+	return pb.AllowSuperUser
 }
 
 // Start starts the application, aka. registers the default system
@@ -247,6 +246,13 @@ func (pb *PocketBase) eagerParseFlags(config *Config) error {
 		"queryTimeout",
 		int(config.DefaultQueryTimeout.Seconds()),
 		"the default SELECT queries timeout in seconds",
+	)
+
+	pb.RootCmd.PersistentFlags().BoolVar(
+		&pb.AllowSuperUser,
+		"developerMode",
+		false,
+		"Turns off admin protections, only for development",
 	)
 
 	return pb.RootCmd.ParseFlags(os.Args[1:])
