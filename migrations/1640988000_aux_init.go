@@ -1,7 +1,7 @@
 package migrations
 
 import (
-	"github.com/pocketbase/pocketbase/core"
+	"github.com/rubenbe/pocketbase/core"
 )
 
 func init() {

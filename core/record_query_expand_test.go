@@ -6,9 +6,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/pocketbase/pocketbase/core"
-	"github.com/pocketbase/pocketbase/tests"
-	"github.com/pocketbase/pocketbase/tools/list"
+	"github.com/rubenbe/pocketbase/core"
+	"github.com/rubenbe/pocketbase/tests"
+	"github.com/rubenbe/pocketbase/tools/list"
 )
 
 func TestExpandRecords(t *testing.T) {

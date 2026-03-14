@@ -10,7 +10,7 @@ import (
 	"strings"
 
 	"github.com/pocketbase/dbx"
-	"github.com/pocketbase/pocketbase/tools/list"
+	"github.com/rubenbe/pocketbase/tools/list"
 )
 
 const StoreKeyCachedCollections = "pbAppCachedCollections"

@@ -14,10 +14,10 @@ import (
 
 	validation "github.com/go-ozzo/ozzo-validation/v4"
 	"github.com/pocketbase/dbx"
-	"github.com/pocketbase/pocketbase/core"
-	"github.com/pocketbase/pocketbase/tools/auth"
-	"github.com/pocketbase/pocketbase/tools/dbutils"
-	"github.com/pocketbase/pocketbase/tools/filesystem"
+	"github.com/rubenbe/pocketbase/core"
+	"github.com/rubenbe/pocketbase/tools/auth"
+	"github.com/rubenbe/pocketbase/tools/dbutils"
+	"github.com/rubenbe/pocketbase/tools/filesystem"
 	"golang.org/x/oauth2"
 )
 

@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/pocketbase/pocketbase/apis"
-	"github.com/pocketbase/pocketbase/core"
-	"github.com/pocketbase/pocketbase/tests"
+	"github.com/rubenbe/pocketbase/apis"
+	"github.com/rubenbe/pocketbase/core"
+	"github.com/rubenbe/pocketbase/tests"
 )
 
 func TestDefaultRateLimitMiddleware(t *testing.T) {

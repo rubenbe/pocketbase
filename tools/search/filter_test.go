@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"github.com/pocketbase/dbx"
-	"github.com/pocketbase/pocketbase/tools/search"
+	"github.com/rubenbe/pocketbase/tools/search"
 )
 
 func TestFilterDataBuildExpr(t *testing.T) {

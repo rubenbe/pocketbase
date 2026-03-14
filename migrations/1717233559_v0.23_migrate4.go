@@ -1,7 +1,7 @@
 package migrations
 
 import (
-	"github.com/pocketbase/pocketbase/core"
+	"github.com/rubenbe/pocketbase/core"
 )
 
 // note: this migration will be deleted in future version

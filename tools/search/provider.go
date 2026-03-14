@@ -8,8 +8,8 @@ import (
 	"strings"
 
 	"github.com/pocketbase/dbx"
-	"github.com/pocketbase/pocketbase/tools/dbutils"
-	"github.com/pocketbase/pocketbase/tools/inflector"
+	"github.com/rubenbe/pocketbase/tools/dbutils"
+	"github.com/rubenbe/pocketbase/tools/inflector"
 	"golang.org/x/sync/errgroup"
 )
 

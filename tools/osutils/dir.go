@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/pocketbase/pocketbase/tools/list"
+	"github.com/rubenbe/pocketbase/tools/list"
 )
 
 // MoveDirContent moves the src dir content, that is not listed in the exclude list,

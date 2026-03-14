@@ -28,9 +28,9 @@ import (
 	"github.com/dop251/goja_nodejs/require"
 	"github.com/fatih/color"
 	"github.com/fsnotify/fsnotify"
-	"github.com/pocketbase/pocketbase/core"
-	"github.com/pocketbase/pocketbase/plugins/jsvm/internal/types/generated"
-	"github.com/pocketbase/pocketbase/tools/template"
+	"github.com/rubenbe/pocketbase/core"
+	"github.com/rubenbe/pocketbase/plugins/jsvm/internal/types/generated"
+	"github.com/rubenbe/pocketbase/tools/template"
 )
 
 const typesFileName = "types.d.ts"

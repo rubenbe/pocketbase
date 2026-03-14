@@ -16,15 +16,15 @@ import (
 
 	"github.com/fatih/color"
 	"github.com/pocketbase/dbx"
-	"github.com/pocketbase/pocketbase/tools/cron"
-	"github.com/pocketbase/pocketbase/tools/filesystem"
-	"github.com/pocketbase/pocketbase/tools/hook"
-	"github.com/pocketbase/pocketbase/tools/logger"
-	"github.com/pocketbase/pocketbase/tools/mailer"
-	"github.com/pocketbase/pocketbase/tools/routine"
-	"github.com/pocketbase/pocketbase/tools/store"
-	"github.com/pocketbase/pocketbase/tools/subscriptions"
-	"github.com/pocketbase/pocketbase/tools/types"
+	"github.com/rubenbe/pocketbase/tools/cron"
+	"github.com/rubenbe/pocketbase/tools/filesystem"
+	"github.com/rubenbe/pocketbase/tools/hook"
+	"github.com/rubenbe/pocketbase/tools/logger"
+	"github.com/rubenbe/pocketbase/tools/mailer"
+	"github.com/rubenbe/pocketbase/tools/routine"
+	"github.com/rubenbe/pocketbase/tools/store"
+	"github.com/rubenbe/pocketbase/tools/subscriptions"
+	"github.com/rubenbe/pocketbase/tools/types"
 	"github.com/spf13/cast"
 	"golang.org/x/sync/semaphore"
 )
@@ -65,6 +65,7 @@ type BaseAppConfig struct {
 	AuxMaxOpenConns  int
 	AuxMaxIdleConns  int
 	IsDev            bool
+	AllowSuperUser   bool
 }
 
 // ensures that the BaseApp implements the App interface.

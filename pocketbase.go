@@ -10,15 +10,15 @@ import (
 	"time"
 
 	"github.com/fatih/color"
-	"github.com/pocketbase/pocketbase/cmd"
-	"github.com/pocketbase/pocketbase/core"
-	"github.com/pocketbase/pocketbase/tools/hook"
-	"github.com/pocketbase/pocketbase/tools/list"
-	"github.com/pocketbase/pocketbase/tools/osutils"
-	"github.com/pocketbase/pocketbase/tools/routine"
+	"github.com/rubenbe/pocketbase/cmd"
+	"github.com/rubenbe/pocketbase/core"
+	"github.com/rubenbe/pocketbase/tools/hook"
+	"github.com/rubenbe/pocketbase/tools/list"
+	"github.com/rubenbe/pocketbase/tools/osutils"
+	"github.com/rubenbe/pocketbase/tools/routine"
 	"github.com/spf13/cobra"
 
-	_ "github.com/pocketbase/pocketbase/migrations"
+	_ "github.com/rubenbe/pocketbase/migrations"
 )
 
 var _ core.App = (*PocketBase)(nil)
@@ -38,6 +38,7 @@ type PocketBase struct {
 	encryptionEnvFlag string
 	queryTimeout      int
 	hideStartBanner   bool
+	AllowSuperUser    bool
 
 	// RootCmd is the main console command
 	RootCmd *cobra.Command
@@ -135,6 +136,7 @@ func NewWithConfig(config Config) *PocketBase {
 		AuxMaxOpenConns:  config.AuxMaxOpenConns,
 		AuxMaxIdleConns:  config.AuxMaxIdleConns,
 		DBConnect:        config.DBConnect,
+		AllowSuperUser:   pb.AllowSuperUser,
 	})
 
 	// hide the default help command (allow only `--help` flag)
@@ -159,6 +161,10 @@ func NewWithConfig(config Config) *PocketBase {
 	})
 
 	return pb
+}
+
+func (pb *PocketBase) IsDeveloperMode() bool {
+	return pb.AllowSuperUser
 }
 
 // Start starts the application, aka. registers the default system
@@ -243,6 +249,13 @@ func (pb *PocketBase) eagerParseFlags(config *Config) error {
 		"queryTimeout",
 		int(config.DefaultQueryTimeout.Seconds()),
 		"the default SELECT queries timeout in seconds",
+	)
+
+	pb.RootCmd.PersistentFlags().BoolVar(
+		&pb.AllowSuperUser,
+		"developerMode",
+		false,
+		"Turns off admin protections, only for development",
 	)
 
 	return pb.RootCmd.ParseFlags(os.Args[1:])
